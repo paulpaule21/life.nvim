@@ -1,9 +1,4 @@
 local M = {}
-local utils = require("life.utils")
-local config = require("life.config")
-
--- later
-local cfg = config.options
 
 function M.daily_journal()
   return table.concat({
@@ -49,18 +44,17 @@ end
 
 function M.quick_capture()
   return table.concat({
-    "#+title: %?",
-    "#+filetags: :idea:",
-    "",
-    "* Context",
+    "#+title: ",
+    "#+filetags: :idea:inbox:",
     "",
     "* Thought",
+    "",
   }, "\n")
 end
 
 function M.person_note()
   return table.concat({
-    "#+title: ${title}",
+    "#+title: ",
     "#+filetags: :person:",
     "",
     "* Context",
@@ -123,6 +117,69 @@ function M.yearly_review()
     "* Principles reinforced or changed",
     "",
     "* Vision for next year",
+    "%?",
+  }, "\n")
+end
+
+function M.concept()
+  return table.concat({
+    "#+title: ${title}",
+    "#+filetags: :concept:",
+    "",
+    "* Definition",
+    "",
+    "* Why it matters",
+    "",
+    "* Core principles",
+    "- ",
+    "",
+    "* Examples",
+    "- ",
+    "",
+    "* Related concepts",
+    "",
+    "* Open questions",
+    "",
+    "* References",
+    "",
+    "%?",
+  }, "\n")
+end
+
+function M.task_template()
+  return table.concat({
+    "#+title: ${task_name}",
+    "#+filetags: :task:",
+    "",
+    "* Created",
+    ":PROPERTIES:",
+    ":Created:  %<%Y-%m-%d %H:%M:%S>",
+    ":END:",
+    "",
+    "* Due Date",
+    ":PROPERTIES:",
+    ":DueDate: %?",
+    ":END:",
+    "",
+    "* Priority",
+    ":PROPERTIES:",
+    ":Priority: High/Medium/Low",
+    ":END:",
+    "",
+    "* Status",
+    ":PROPERTIES:",
+    ":Status: Pending/InProgress/Completed",
+    ":END:",
+    "",
+    "* Tags",
+    ":PROPERTIES:",
+    ":Tags: ",
+    ":END:",
+    "",
+    "* Description",
+    "- ",
+    "",
+    "* Notes",
     "%?",
   }, "\n")
 end

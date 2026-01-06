@@ -1,7 +1,12 @@
 local M = {}
 
 function M.open()
-  vim.cmd("OrgAgenda")
+  if vim.fn.exists(":Org") ~= 2 then
+    vim.notify("orgmode.nvim not loaded", vim.log.levels.WARN)
+    return
+  end
+
+  vim.cmd("Org agenda")
 end
 
 function M.setup(opts)
@@ -12,9 +17,7 @@ function M.setup(opts)
   vim.api.nvim_create_autocmd("User", {
     pattern = "OrgModeStarted",
     callback = function()
-      vim.schedule(function()
-        M.open()
-      end)
+      vim.schedule(M.open)
     end,
   })
 end
