@@ -9,6 +9,15 @@ function M.setup(opts)
   require("life.config").setup(opts)
   require("life.commands").setup()
   require("life.keymaps").setup()
+
+  vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+      vim.schedule(function()
+        require("life.templates").preload()
+      end)
+    end,
+  })
+
 end
 
 return M
