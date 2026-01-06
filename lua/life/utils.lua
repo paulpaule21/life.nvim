@@ -1,9 +1,5 @@
 local M = {}
 
-function M.expand(path)
-  return vim.fn.expand(path)
-end
-
 function M.current_week_path(base)
   local year = os.date("%Y")
   local week = os.date("%V")

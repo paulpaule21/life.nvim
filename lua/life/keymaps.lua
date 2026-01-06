@@ -1,5 +1,10 @@
 local M = {}
-local cfg = require("life.config").options
+local config = require("life.config")
+
+-- later
+local cfg = config.options
+
+
 
 function M.setup()
   local map = vim.keymap.set

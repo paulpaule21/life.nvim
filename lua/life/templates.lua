@@ -1,6 +1,9 @@
 local M = {}
 local utils = require("life.utils")
-local cfg = require("life.config").options
+local config = require("life.config")
+
+-- later
+local cfg = config.options
 
 function M.daily_journal()
   return table.concat({
